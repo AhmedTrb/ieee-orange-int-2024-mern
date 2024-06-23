@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 const port = 4000 ;
-app.use(express());
+app.use(express.json());
 app.use(cors());
 
 const DB_URL = process.env.DB_URL;
@@ -20,6 +20,7 @@ connectDB();
 // API endpoints
 app.use("/api/tasks",taskRouter);
 app.use("/api/notes",noteRouter);
+
 
 app.listen(port,()=>{
     console.log(`server started at http://localhost:${port}`);

@@ -10,4 +10,4 @@ const noteSchema = new mongoose.Schema({
 
 const noteModel = mongoose.model.note || mongoose.model("note",noteSchema);
 
-export default userModel;
+export default noteModel;

@@ -1,17 +1,17 @@
-import taskModel from "../models/tasksModel.js";
+import taskModel from "../models/taskModel.js";
 
 const createTask = async (req,res)=>{
 
     const newTask = new taskModel({
         title:req.body.title,
         description:req.body.description,
-        deadline:req.body.deadline
-    })
+        deadline:req.body.deadline,
+    });
     try {
         await newTask.save();
         res.json({success:true,message:"task created"});
     } catch (e) {
-        res.json({success:false,message:error.message});
+        res.json({success:false,message:e.message});
     }
 }
 
@@ -21,19 +21,20 @@ const updateTask = async (req,res)=>{
         task.title = req.body.title;
         task.description = req.body.description;
         task.deadline = req.body.deadline;
+        task.completed = req.body.completed;
         await task.save();
         res.json({success:true,message:"task updated"});
     } catch (e) {
-        res.json({success:false,message:error.message});
+        res.json({success:false,message:e.message});
     }
 }
 
 const listTask = async (req,res)=>{
     try {
-        const tasks = await taskModel.findAll();
+        const tasks = await taskModel.find();
         res.json({success:true,data:tasks});
     } catch (e) {
-        res.json({success:false,message:error.message});
+        res.json({success:false,message:e.message});
     }
 }
 const removeTask = async (req,res)=>{
@@ -42,7 +43,7 @@ const removeTask = async (req,res)=>{
         await task.remove();
         res.json({success:true,message:"task removed"});
     } catch (e) {
-        res.json({success:false,message:error.message});
+        res.json({success:false,message:e.message});
     }
 }
 

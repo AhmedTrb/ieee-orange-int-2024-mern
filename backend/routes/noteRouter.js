@@ -7,7 +7,7 @@ const noteRouter = express.Router();
 noteRouter.post("/create",createNote);
 noteRouter.post("/list",listNote);
 noteRouter.post("/remove",removeNote);
-noteRouter .post("/update",updateNote);
+noteRouter.post("/update",updateNote);
 
 
 export default noteRouter ;
