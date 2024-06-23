@@ -5,7 +5,7 @@ const createNote = async (req, res) => {
     try {
         const { title, description, category, date } = req.body;
         const newNote = new noteModel({ title, description, category, date });
-        const saveNote = await newNote.save();
+        await newNote.save();
         res.json({success:true,message:"note created"});
     } catch (e){
         res.json({success:false,message:e.message});
