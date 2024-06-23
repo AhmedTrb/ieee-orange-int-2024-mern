@@ -10,7 +10,7 @@ const createTask = async (req,res)=>{
     try {
         await newTask.save();
         res.json({success:true,message:"task created"});
-    } catch (error) {
+    } catch (e) {
         res.json({success:false,message:error.message});
     }
 }
@@ -23,7 +23,7 @@ const updateTask = async (req,res)=>{
         task.deadline = req.body.deadline;
         await task.save();
         res.json({success:true,message:"task updated"});
-    } catch (error) {
+    } catch (e) {
         res.json({success:false,message:error.message});
     }
 }
@@ -32,7 +32,7 @@ const listTask = async (req,res)=>{
     try {
         const tasks = await taskModel.findAll();
         res.json({success:true,data:tasks});
-    } catch (error) {
+    } catch (e) {
         res.json({success:false,message:error.message});
     }
 }
@@ -41,7 +41,9 @@ const removeTask = async (req,res)=>{
         const task = await taskModel.findById(req.body.id);
         await task.remove();
         res.json({success:true,message:"task removed"});
-    } catch (error) {
+    } catch (e) {
         res.json({success:false,message:error.message});
     }
 }
+
+export {createTask,updateTask,listTask,removeTask};
